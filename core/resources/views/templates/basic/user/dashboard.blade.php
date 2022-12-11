@@ -64,7 +64,7 @@
                             <span class="material-icons mr-1">
                                 diamond
                             </span>
-                            hello
+                            {{ get_user_vip_level(auth()->user()->id) }}
                         </a>
                     </div>
                 </div>
@@ -261,22 +261,50 @@
                             <div class="card-body">
                                 <div class="row align-items-center justify-content-around">
                                     <div class="col-auto pr-0">
-                                        <div class="avatar avatar-40 border-0 bg-danger-light rounded-circle text-danger">
-                                            <i class="material-icons vm text-template">supervised_user_circle</i>
+                                        <div class="avatar avatar-40 border-0 bg-default-light rounded-circle text-default">
+                                            <i class="material-icons vm text-template">sports_soccer</i>
                                         </div>
                                     </div>
                                     <div align="left" class="col-3 align-self-center pl-0">
-                                        <h6 class="mb-1">{{ $general->cur_sym }} {{ showAmount($widget['totalTransaction']) }}</h6>
-                                        <p class="small text-secondary">Team Earn</p>
+                                        <h6 class="mb-1">{{ $widget['totalBet'] }}</h6>
+                                        <p class="small text-secondary">Total Bets</p>
                                     </div>
                                     
                                     <div align="right" class="col-3 align-items-center pr-0 border-left">
-                                        <h6 class="mb-1">{{ $general->cur_sym }} {{ showAmount(($widget['totalTransaction'])) }}</h6>
-                                        <p class="small text-secondary">Today Earn</p>
+                                        <h6 class="mb-1">{{ $widget['totalPending'] }}</h6>
+                                        <p class="small text-secondary">Pending Bets</p>
                                     </div>
                                     <div class="col-auto pl-0">
-                                        <div class="avatar avatar-40 border-0 bg-default-light rounded-circle text-default">
-                                            <i class="material-icons vm text-template">monetization_on</i>
+                                        <div class="avatar avatar-40 border-0 bg-warning-light rounded-circle text-warning">
+                                            <i class="material-icons vm text-template">sports</i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="card border-0 mb-4">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-around">
+                                    <div class="col-auto pr-0">
+                                        <div class="avatar avatar-40 border-0 bg-success-light rounded-circle text-success">
+                                            <i class="material-icons vm text-template">videogame_asset</i>
+                                        </div>
+                                    </div>
+                                    <div align="left" class="col-3 align-self-center pl-0">
+                                        <h6 class="mb-1">{{ $widget['totalWin'] }}</h6>
+                                        <p class="small text-secondary">Won Bets</p>
+                                    </div>
+                                    
+                                    <div align="right" class="col-3 align-items-center pr-0 border-left">
+                                        <h6 class="mb-1">{{ $widget['totalLose'] }}</h6>
+                                        <p class="small text-secondary">Lose Bets</p>
+                                    </div>
+                                    <div class="col-auto pl-0">
+                                        <div class="avatar avatar-40 border-0 bg-danger-light rounded-circle text-danger">
+                                            <i class="material-icons vm text-template">videogame_asset_off</i>
                                         </div>
                                     </div>
                                 </div>
@@ -479,6 +507,7 @@
             </div>
 
         </div>
+        @include(activeTemplate().'includes.bottom_nav')
     </main>
 
     <!-- QrCode Modal -->
@@ -507,7 +536,7 @@
 
     <!-- App Capsule -->
 
-    <div id="appCapsule" class="mb-3">
+    {{-- <div id="appCapsule" class="mb-3">
 
         <div class="container">
             <div class="row">
@@ -991,7 +1020,7 @@
         <!--</div>-->
         <!-- * logout menu -->
 
-    </div>
+    </div> --}}
 
 
 

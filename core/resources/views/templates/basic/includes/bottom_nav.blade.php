@@ -2,7 +2,7 @@
   <div class="footer">
       <div class="row no-gutters justify-content-center">
           <div class="col-auto">
-              <a href="{{ route('user.home') }}" class="{{ request()->path() == 'user/dashboard' ? 'active' : '' }}">
+              <a href="{{ route('home') }}" class="{{ request()->path() == '/' ? 'active' : '' }}">
                   <i class="material-icons">home</i>
                   <p>Home</p>
               </a>
@@ -29,7 +29,7 @@
               </a>
           </div>
           <div class="col-auto">
-              <a href="{{ route('user.home') }}" class="{{ request()->path() == 'user/display-profile' ? 'active' : '' }}">
+              <a href="{{ route('user.home') }}" class="{{ request()->path() == 'user/dashboard' ? 'active' : '' }}">
                   <i class="material-icons">account_circle</i>
                   <p>Profile</p>
               </a>
