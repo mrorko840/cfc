@@ -37,7 +37,7 @@ $noticeCaption = getContent('notice.content',true);
                     <span class="counter"></span>
                 </a>
                 <div style="padding-right: 0.5rem !important;" class="mt-1">
-                    <a href="#" class="avatar avatar-30 shadow-sm rounded-circle ml-2 mt-1">
+                    <a href="{{ route('user.home') }}" class="avatar avatar-30 shadow-sm rounded-circle ml-2 mt-1">
                         <figure class="m-0 background">
                           <img src="{{ getImage(imagePath()['profile']['user']['path'].'/'. @$user->image,imagePath()['profile']['user']['size']) }}" alt="">
                         </figure>

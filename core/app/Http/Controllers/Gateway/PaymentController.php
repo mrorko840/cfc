@@ -153,7 +153,7 @@ return json_decode($response);
         $data->status = 0;
         $data->save();
         session()->put('Track', $data->trx);
-        return redirect()->route('user.deposit.preview');
+        return redirect()->route('user.deposit.manual.confirm');
     }
 
 

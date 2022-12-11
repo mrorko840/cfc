@@ -17,7 +17,7 @@ $noticeCaption = getContent('notice.content',true);
             </a>
         </div>
         <div class="ml-auto col-auto">
-            <a href="#" class="avatar avatar-30 shadow-sm rounded-circle ml-2">
+            <a href="{{ route('user.home') }}" class="avatar avatar-30 shadow-sm rounded-circle ml-2">
                 <figure class="m-0 background">
                     <img src="{{ getImage(imagePath()['profile']['user']['path'].'/'. @$user->image,imagePath()['profile']['user']['size']) }}" alt="">
                 </figure>
