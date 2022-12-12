@@ -52,6 +52,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <div class="row align-items-center">
+                            
                             <div class="col-auto pr-0">
                                 <div class="avatar bg-warning-light text-warning avatar-50 rounded">
                                     <div class="background">

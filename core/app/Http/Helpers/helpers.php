@@ -945,14 +945,50 @@ function showUserLevel($id, $level)
         if ( !blank($data->referrer) ){
         $sp = $data->referrer->username;
         }
+
+        echo 
+            '<div class="container">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+
+                            <div class="col-auto pr-0">
+                                <div class="avatar bg-warning-light text-warning avatar-50 rounded">
+                                    <div class="background">
+                                        <span class="material-icons">
+                                            person
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col align-self-center pr-0">
+                                <h6 class="font-weight-normal mb-1"> ' . $data->firstname . ' ' . $data->lastname . '</h6>
+                                <p class="small text-secondary">
+                                    Username : ' . $data->username . '
+                                    <br>
+                                    Joined At : ' . showDateTime($data->created_at) . '
+                                    <br>
+                                    First Deposit : <span class="text-info">' . $fd . '</span>
+                                    <br>
+                                    Super Agent : <span class="text-info">' . $sp . '</span>
+                                </p>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ';
         
-        echo " <tr>";
-        echo ' <td data-label="S.L">'.$key.'</td>';
-        echo ' <td data-label="Username">'.$data->username.'</td>';
-        echo ' <td data-label="Joined At">'.showDateTime($data->created_at).'</td>';
-        echo ' <td data-label="First Deposit">'.$fd.'</td>';
-        echo ' <td data-label="Super Agent">'.$sp.'</td>';
-        echo "</tr>";
+        // echo " <tr>";
+        // echo ' <td data-label="S.L">'.$key.'</td>';
+        // echo ' <td data-label="Username">'.$data->username.'</td>';
+        // echo ' <td data-label="Joined At">'.showDateTime($data->created_at).'</td>';
+        // echo ' <td data-label="First Deposit">'.$fd.'</td>';
+        // echo ' <td data-label="Super Agent">'.$sp.'</td>';
+        // echo "</tr>";
     }
 
 }
