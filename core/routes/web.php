@@ -413,6 +413,8 @@ Route::name('user.')->prefix('user')->group(function () {
         Route::middleware(['checkStatus'])->group(function () {
             Route::get('dashboard', 'UserController@home')->name('home');
 
+            Route::get('analytics', 'UserController@analytics')->name('analytics');
+
             Route::get('profile-setting', 'UserController@profile')->name('profile.setting');
             Route::post('profile-setting', 'UserController@submitProfile');
             Route::get('address-setting', 'UserController@Address')->name('address.setting');

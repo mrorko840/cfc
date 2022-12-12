@@ -8,7 +8,7 @@
               </a>
           </div>
           <div class="col-auto">
-              <a href="#" class="{{ request()->path() == 'user/analytics' ? 'active' : '' }}">
+              <a href="{{route('user.analytics')}}" class="{{ request()->path() == 'user/analytics' ? 'active' : '' }}">
                   <i class="material-icons">insert_chart_outline</i>
                   <p>Analytics</p>
               </a>

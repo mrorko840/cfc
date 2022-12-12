@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Bet;
+use App\Models\User;
+use App\Models\Deposit;
+use App\Models\Withdrawal;
+use App\Models\Transaction;
+use App\Models\Notification;
+use Illuminate\Http\Request;
+use App\Models\CommissionLog;
+use App\Models\SupportTicket;
+use App\Models\GeneralSetting;
+use App\Models\WithdrawMethod;
+use App\Rules\FileTypeValidate;
 use App\Lib\GoogleAuthenticator;
 use App\Models\AdminNotification;
-use App\Models\Bet;
-use App\Models\CommissionLog;
-use App\Models\GeneralSetting;
-use App\Models\SupportTicket;
-use App\Models\Transaction;
-use App\Models\User;
-use App\Models\WithdrawMethod;
-use App\Models\Withdrawal;
-use App\Rules\FileTypeValidate;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
-use Carbon\Carbon;
-use App\Models\Notification;
+use Image;
 
 class UserController extends Controller
 {
@@ -49,46 +51,120 @@ class UserController extends Controller
         return view($this->activeTemplate. 'user.profile_setting', compact('pageTitle','user'));
     }
 
+    // public function submitProfile(Request $request)
+    // {
+    //     $user = Auth::user();
+    //     $request->validate([
+    //         'firstname' => 'required|string|max:50',
+    //         'lastname' => 'required|string|max:50',
+    //         'email' => 'required|email|max:90|unique:users,email,' . $user->id,
+    //         'address' => 'sometimes|max:80',
+    //         'state' => 'sometimes|max:80',
+    //         'zip' => 'sometimes|max:40',
+    //         'city' => 'sometimes|max:50',
+    //         'image' => ['image',new FileTypeValidate(['jpg','jpeg','png','gif'])]
+    //     ],[
+    //         'firstname.required'=>'First name field is required',
+    //         'lastname.required'=>'Last name field is required'
+    //     ]);
+
+    //     $user = Auth::user();
+
+    //     $in['firstname'] = $request->firstname;
+    //     $in['lastname'] = $request->lastname;
+    //     $in['email'] = $request->email;
+
+    //     $in['address'] = [
+    //         'address' => $request->address,
+    //         'state' => $request->state,
+    //         'zip' => $request->zip,
+    //         'country' => @$user->address->country,
+    //         'city' => $request->city,
+    //     ];
+
+
+    //     if ($request->hasFile('image')) {
+    //         $location = imagePath()['profile']['user']['path'];
+    //         $size = imagePath()['profile']['user']['size'];
+    //         $filename = uploadImage($request->image, $location, $size, $user->image);
+    //         $in['image'] = $filename;
+    //     }
+    //     $user->fill($in)->save();
+    //     $notify[] = ['success', 'Profile updated successfully.'];
+    //     return back()->withNotify($notify);
+    // }
+
     public function submitProfile(Request $request)
     {
-        $user = Auth::user();
         $request->validate([
             'firstname' => 'required|string|max:50',
-            'lastname' => 'required|string|max:50',
-            'email' => 'required|email|max:90|unique:users,email,' . $user->id,
-            'address' => 'sometimes|max:80',
-            'state' => 'sometimes|max:80',
-            'zip' => 'sometimes|max:40',
-            'city' => 'sometimes|max:50',
-            'image' => ['image',new FileTypeValidate(['jpg','jpeg','png','gif'])]
+            'lastname' => 'required|string|max:50'
+            
         ],[
-            'firstname.required'=>'First name field is required',
-            'lastname.required'=>'Last name field is required'
+            'firstname.required'=>'First Name Field is required',
+            'lastname.required'=>'Last Name Field is required'
         ]);
 
-        $user = Auth::user();
 
         $in['firstname'] = $request->firstname;
         $in['lastname'] = $request->lastname;
-        $in['email'] = $request->email;
+
+
+        $user = Auth::user();
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = rand(10000000,40000000) . '_' . $user->username.'.png';
+            $location = 'assets/images/user/profile/'.$filename;
+            $in['image'] = $filename;
+
+            $path = './assets/images/user/profile/';
+            $link = $path . $user->image;
+            if (file_exists($link)) {
+                @unlink($link);
+            }
+            $size = imagePath()['profile']['user']['size'];
+            $image = Image::make($image);
+            $size = explode('x', strtolower($size));
+            $image->resize($size[0], $size[0]);
+            $image->save($location);
+        }
+        $user->fill($in)->save();
+        $notify[] = ['success', 'Profile Updated successfully.'];
+        return back()->withNotify($notify);
+    }
+
+    public function Address()
+    {
+        $pageTitle = "Address Setting";
+        $user = auth()->user();
+        $data['user'] = Auth::user();
+        return view($this->activeTemplate. 'user.profile_setting', compact('pageTitle','user','data'));
+    }
+
+    public function submitAddress(Request $request)
+    {
+        $request->validate([
+            'address' => "sometimes|required|max:80",
+            'state' => 'sometimes|required|max:80',
+            'zip' => 'sometimes|required|max:40',
+            'city' => 'sometimes|required|max:50',
+            'image' => 'mimes:png,jpg,jpeg'
+        ]);
 
         $in['address'] = [
             'address' => $request->address,
             'state' => $request->state,
             'zip' => $request->zip,
-            'country' => @$user->address->country,
+            'country' => $request->country,
             'city' => $request->city,
         ];
 
+        $user = Auth::user();
 
-        if ($request->hasFile('image')) {
-            $location = imagePath()['profile']['user']['path'];
-            $size = imagePath()['profile']['user']['size'];
-            $filename = uploadImage($request->image, $location, $size, $user->image);
-            $in['image'] = $filename;
-        }
+        
         $user->fill($in)->save();
-        $notify[] = ['success', 'Profile updated successfully.'];
+        $notify[] = ['success', 'Profile Updated successfully.'];
         return back()->withNotify($notify);
     }
 
@@ -530,6 +606,25 @@ class UserController extends Controller
         echo json_encode($data);
         die();
         
+    }
+
+    public function analytics()
+    {
+        $pageTitle = "Analytics";
+        $data['user'] = Auth::user();
+        $data['logs'] = auth()->user()->deposits()->with(['gateway'])->latest()->paginate(getPaginate());
+
+        $user = Auth::user();
+        $widget['total_balance']   = $user->balance;
+        $widget['total_withdrawn'] = Withdrawal::approved()->where('user_id', $user->id)->sum('amount');
+        $widget['totalWin']         = Bet::where('user_id', $user->id)->where('status', 1);
+        $widget['totalLose']        = Bet::where('user_id', $user->id)->where('status', 2);
+
+        $transactions = Transaction::where('user_id', auth()->id());
+
+        
+
+        return view($this->activeTemplate. 'user.analytics', $data, compact('user','data', 'widget', 'pageTitle','transactions'));
     }
     
     

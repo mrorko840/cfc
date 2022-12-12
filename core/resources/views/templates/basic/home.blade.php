@@ -25,9 +25,14 @@
         @auth
             @include($activeTemplate . 'includes.top_nav')
             @include($activeTemplate . 'includes.side_nav')
+            <div class="container mt-3 mb-4 text-center">
+                <h2 class="text-white">{{ $general->cur_sym }} {{ showAmount(auth()->user()->balance) }}</h2>
+                <p class="text-white mb-4">Total Balance</p>
+            </div>
         @endauth
-        
 
+        
+        
         <div class="main-container">
 
             <!-- Scrolling Banner -->
