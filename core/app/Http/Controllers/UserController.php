@@ -409,7 +409,7 @@ class UserController extends Controller
 
     public function commissionsDeposit()
     {
-        $pageTitle = 'Deposit Referral Commissions';
+        $pageTitle = 'Deposit Commissions';
         $logs = CommissionLog::where('type','deposit')->where('to_id', auth()->user()->id)->with('user', 'bywho')->latest()->paginate(getPaginate());
         $emptyMessage = "No result found";
 
@@ -418,7 +418,7 @@ class UserController extends Controller
 
     public function commissionsBet()
     {
-        $pageTitle = 'Referral Commissions on Bet';
+        $pageTitle = 'Bet Commissions';
         $logs = CommissionLog::where('type','bet')->where('to_id', auth()->user()->id)->with('user', 'bywho')->latest()->paginate(getPaginate());
         $emptyMessage = "No result found";
 
@@ -427,7 +427,7 @@ class UserController extends Controller
 
     public function commissionsWin()
     {
-        $pageTitle = 'Referral Commissions on Won Bet';
+        $pageTitle = 'Won Bet Commissions';
         $logs = CommissionLog::where('type','win')->where('to_id', auth()->user()->id)->with('user', 'bywho')->latest()->paginate(getPaginate());
         $emptyMessage = "No result found";
 
@@ -436,7 +436,7 @@ class UserController extends Controller
 
     public function refMy($levelNo = 1)
     {
-        $pageTitle = "My Referred Users";
+        $pageTitle = "My Team";
         $emptyMessage = "No result found";
         $lev = get_user_level_count(auth()->user()->id);
         return view($this->activeTemplate. 'user.referral.users', compact('pageTitle','emptyMessage','levelNo','lev'));

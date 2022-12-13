@@ -18,14 +18,12 @@
                 <div style="height: 56px; width: 56px; margin-top: -23px;" class="bg-default-light text-default rounded-circle shadow d-flex align-items-center">
                     <i style="font-size: 30px; width: 40px;" class="material-icons">diamond</i>
                 </div>
-                
-                {{-- <p>Membership</p> --}}
               </a>
           </div>
           <div class="col-auto">
-              <a href="#" class="{{ request()->path() == 'user/ptc' ? 'active' : '' }}">
-                  <i class="material-icons">extension</i>
-                  <p>Task</p>
+              <a href="{{ route('ticket.open') }}" class="{{ request()->path() == 'user/ptc' ? 'active' : '' }}">
+                  <i class="material-icons">support_agent</i>
+                  <p>Support</p>
               </a>
           </div>
           <div class="col-auto">

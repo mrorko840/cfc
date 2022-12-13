@@ -9,8 +9,18 @@ $noticeCaption = getContent('notice.content',true);
             {{-- <button class="menu-btn btn btn-40 btn-link" type="button">
                 <span class="material-icons">menu</span>
             </button> --}}
+
+            <div class="custom-control custom-switch mx-2 pt-2">
+                <input type="checkbox" class="custom-control-input switch-info text-align-center" id="darklayout" >
+                <label class="custom-control-label" for="darklayout">
+                    <span class="material-icons">
+                        mode_night
+                    </span>
+                </label>
+            </div>
+
         </div>
-        <div class="text-left col align-self-center">
+        <div class="text-center col align-self-center">
             <a class="navbar-brand" href="{{ route('home') }}">
                 <h5 class="mb-0"><img style="width:110px;" src="{{ getImage(getFilePath('logoIcon') . '/logo.png') }}" alt="site-logo"></h5>
             </a>
@@ -18,14 +28,14 @@ $noticeCaption = getContent('notice.content',true);
         <div class="ml-auto col-auto pl-0">
 
             <div class="row">
-                <div class="custom-control custom-switch pt-2">
+                {{-- <div class="custom-control custom-switch pt-2">
                     <input type="checkbox" class="custom-control-input switch-info text-align-center" id="darklayout" >
                     <label class="custom-control-label" for="darklayout">
                         <span class="material-icons">
                             mode_night
                         </span>
                     </label>
-                </div>
+                </div> --}}
     
                 <a href="notification.html" class=" btn btn-40 btn-link" data-toggle="modal" data-target="#noticeModal">
                     <span class="material-icons">notifications_none</span>

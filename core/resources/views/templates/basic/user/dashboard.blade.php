@@ -1,7 +1,7 @@
 @extends($activeTemplate . 'layouts.frontend')
 @section('content')
     @php
-        $yourLinks = getContent('your_links.content', true);
+        $yourLinks = getContent('links.content', true);
     @endphp
 
 
@@ -9,7 +9,8 @@
 
 
 
-
+<!-- App download Modal -->
+@include($activeTemplate . 'includes.app_down_modal')
 
 
 <body class="body-scroll d-flex flex-column h-100 menu-overlay" data-page="addmoney">
@@ -26,7 +27,7 @@
             <div class="card overflow-hidden">
                 <div class="card-body p-0 h-150">
                     <div class="background">
-                        <img src="{{ asset($activeTemplateTrue.'assets/img/image10.jpg') }}" alt="" style="display: none;">
+                        <img src="{{ getImage('assets/images/frontend/links/' . $yourLinks->data_values->cover_photo) }}" alt="" style="display: none;">
                     </div>
                 </div>
             </div>
@@ -91,13 +92,13 @@
                             </div>
                             <div style="flex-direction: column;" class="col d-flex justify-content-center align-items-center">
                                 <a style="height: 50px; width: 50px; box-shadow: 0 0 0.5rem 0px #00000040 !important;" 
-                                class=" border-custom p-3 text-white shadow d-flex justify-content-center align-items-center" href="#">
+                                class=" border-custom p-3 text-white shadow d-flex justify-content-center align-items-center" href="{{ route('user.referral.users') }}">
                                     <span class="material-icons">
-                                        swap_horiz
+                                        group_add
                                     </span>
                                 </a>
                                 <div class="text-center pt-1">
-                                    Transfer
+                                    Reffer
                                 </div>
                             </div>
                             <div style="flex-direction: column;" class="col d-flex justify-content-center align-items-center">

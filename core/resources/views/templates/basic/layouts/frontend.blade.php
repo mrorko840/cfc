@@ -100,6 +100,8 @@ $yourLinks = getContent('your_links.content', true);
         }
     </style>
 
+<link rel="stylesheet" href="{{ asset('assets/global/css/line-awesome.min.css') }}" />
+
 
     {{-- <!--CSS -->
     <link rel="stylesheet" href="{{ asset('assets/global/css/bootstrap.min.css') }}">
