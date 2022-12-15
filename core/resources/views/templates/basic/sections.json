@@ -37,8 +37,7 @@
            "video":"text",
            "telegram":"text",
            "images": {
-                 "cover_photo": {},
-                 "refer_image": {}
+                 "cover_photo": {}
            }
         }
      },
@@ -225,14 +224,6 @@
             "social_icon": "icon",
             "url": "text",
             "modal": true
-        }
-    },
-    "your_links":{
-      "builder":true,
-      "no_selection":true,
-      "name":"Your Links",
-      "content":{
-         "apps":"text"
         }
     },
     "notice":{

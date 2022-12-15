@@ -346,9 +346,9 @@ $yourLinks = getContent('your_links.content', true);
     <div class="modal cmn-modal fade" id="predictModal">
         <div class="modal-dialog modal-lg text-warning">
             <div class="modal-content">
-                <div class="modal-header bg-primary">
+                <div class="modal-header bg-dark py-2">
                     <h5 class="modal-title col text-center match-name text-white"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close rounded-circle bg-danger" data-bs-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <div class="text-dark" id="predict-modal">
                 </div>
