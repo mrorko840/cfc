@@ -93,10 +93,10 @@ class MatchController extends Controller
     {
         $request->validate([
             'score'          => 'required',
-            'result_id'         => 'required',
+            'match_id'         => 'required',
         ]);
-        $match = Result::findOrFail($request->result_id);
-        $winners = Bet::where('status', 0)->where('result_id', $request->result_id)->get();
+        $match = Result::findOrFail($request->match_id);
+        $winners = Bet::where('status', 0)->where('match_id', $request->match_id)->get();
         
         foreach ($winners as $item) {
             
