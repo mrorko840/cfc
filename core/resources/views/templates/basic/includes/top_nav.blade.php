@@ -50,7 +50,7 @@ $noticeCaption = getContent('notice.content',true);
                 <div style="padding-right: 0.5rem !important;" class="mt-1">
                     <a href="{{ route('user.home') }}" class="avatar avatar-30 shadow-sm rounded-circle ml-2 mt-1">
                         <figure class="m-0 background">
-                          <img src="@if($user->image!=null){{ getImage(imagePath()['profile']['user']['path'].'/'. @$user->image) }} @else {{ route('home') }}/assets/images/avator/messi.jpg @endif" alt="">
+                          <img src="@if($user->image!=null){{ getImage(imagePath()['profile']['user']['path'].'/'. @$user->image) }} @else {{ route('home') }}/assets/images/avator/ronaldinho.jpg @endif" alt="">
                         </figure>
                     </a>
                 </div>
