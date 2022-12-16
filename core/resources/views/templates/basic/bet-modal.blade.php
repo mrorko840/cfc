@@ -92,7 +92,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div style="color:red" id="min-bet" style="display:none"><b>Minimum bet is 10$</b></div>
+                        <div style="color:red" id="min-bet" style="display:none"><b>Minimum bet is {{ $general->min_limit }}{{ __($general->cur_sym) }}</b></div>
 
                         <h6 class="mt-2 text-center">
 
