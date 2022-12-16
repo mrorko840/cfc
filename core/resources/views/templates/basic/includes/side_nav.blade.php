@@ -9,7 +9,7 @@
         <div class="col-auto">
             <div class="avatar avatar-40 rounded-circle position-relative">
                 <figure class="background">
-                    <img src="{{ getImage(imagePath()['profile']['user']['path'].'/'. @$user->image,imagePath()['profile']['user']['size']) }}" alt="LOGO">
+                    <img src="@if($user->image!=null){{ getImage(imagePath()['profile']['user']['path'].'/'. @$user->image) }} @else {{ route('home') }}/assets/images/avator/messi.jpg @endif" alt="LOGO">
                 </figure>
             </div>
         </div>

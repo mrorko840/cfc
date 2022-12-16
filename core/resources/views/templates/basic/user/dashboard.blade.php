@@ -35,7 +35,7 @@
         <div class="container-fluid top-70 text-center mb-4">
             <div class="avatar avatar-140 rounded-circle mx-auto shadow">
                 <div class="background">
-                    <img src="{{ getImage(imagePath()['profile']['user']['path'].'/'. @$user->image,imagePath()['profile']['user']['size']) }}" alt="">
+                    <img src="@if($user->image!=null){{ getImage(imagePath()['profile']['user']['path'].'/'. @$user->image) }} @else {{ route('home') }}/assets/images/avator/messi.jpg @endif" alt="">
                 </div>
             </div>
         </div>
